@@ -8,9 +8,9 @@ public class BaseTest extends BasePage {
 
 	@AfterMethod
 	public void tearDown() {
-		if (SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver() != null) {
-			SeleniumWebDriver.getSeleniumWebDriverInstance()
-					.quitSeleniumWebDriver();
+		if (SeleniumDriver.getInstance().getWebDriver() != null) {
+			SeleniumDriver.getInstance()
+					.quitSeleniumDriver();
 		}
 	}
 }

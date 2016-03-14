@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import framework.BaseTest;
-import framework.SeleniumWebDriver;
+import framework.SeleniumDriver;
 import pages.GoogleHomePage;
 
 public class SearchTest extends BaseTest {
@@ -33,7 +33,7 @@ public class SearchTest extends BaseTest {
 		System.out.println("Page after search is: " + actualPageTitleAfterSearch);
 		Assert.assertEquals(actualPageTitleAfterSearch, expectedPageTitle, "Actual page title is incorrect");
 		
-		SeleniumWebDriver.getSeleniumWebDriverInstance().quitSeleniumWebDriver();
-		System.out.println("webdriver is: " + SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver());
+		SeleniumDriver.getInstance().quitSeleniumDriver();
+		System.out.println("webdriver is: " + SeleniumDriver.getInstance().getWebDriver());
 	}
 }

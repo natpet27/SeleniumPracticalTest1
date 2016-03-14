@@ -6,19 +6,19 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import framework.SeleniumWebDriver;
+import framework.SeleniumDriver;
 
 public class BasePage {
 	
-	private SeleniumWebDriver seleniumWebDriver;
+	private SeleniumDriver seleniumWebDriver;
 
 	protected BasePage() {
-		seleniumWebDriver = SeleniumWebDriver.getSeleniumWebDriverInstance();
+		seleniumWebDriver = SeleniumDriver.getInstance();
 		PageFactory.initElements(seleniumWebDriver.getWebDriver(), this);
 	}
 
 	protected void goToPage(String url) {
-		SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().get(url);
+		SeleniumDriver.getInstance().getWebDriver().get(url);
 	}
 
 	protected void enterTextIntoTextField(WebElement textField, String text) {
@@ -32,8 +32,8 @@ public class BasePage {
 	}
 
 	public void waitUntilPageTitleStartsWithPartialText(final String partialText) {
-		(new WebDriverWait(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(),
-				SeleniumWebDriver.getSeleniumWebDriverInstance().getTimeOutTime()))
+		(new WebDriverWait(SeleniumDriver.getInstance().getWebDriver(),
+				SeleniumDriver.getInstance().getTimeOutTime()))
 						.until(new ExpectedCondition<Boolean>() {
 							public Boolean apply(WebDriver d) {
 								return d.getTitle().toLowerCase().startsWith(partialText);
