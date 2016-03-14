@@ -5,15 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import framework.SeleniumWebDriver;
 
 public class BasePage {
+	
+	private SeleniumWebDriver seleniumWebDriver;
 
 	protected BasePage() {
-		PageFactory.initElements(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(), this);
+		seleniumWebDriver = SeleniumWebDriver.getSeleniumWebDriverInstance();
+		PageFactory.initElements(seleniumWebDriver.getWebDriver(), this);
 	}
 
 	protected void goToPage(String url) {
@@ -41,16 +42,6 @@ public class BasePage {
 	}
 	
 	public String getPageTitle() {
-		return SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().getTitle();
-	}
-	
-	@BeforeMethod() 
-	public void setUp() {
-		SeleniumWebDriver.getSeleniumWebDriverInstance();
-	}
-	
-	@AfterMethod() 
-	public void tearDown() {
-		SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().quit();
-	}
+		return seleniumWebDriver.getWebDriver().getTitle();
+	}	
 }

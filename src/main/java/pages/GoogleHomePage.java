@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class GoogleHomePage extends BasePage {
 	
-	private final String HOME_URL = "https://www.google.com.ua";
+	private final String HOME_URL = "https://www.google.com";
 	
 	@FindBy (name="q")
 	private WebElement searchTextField;

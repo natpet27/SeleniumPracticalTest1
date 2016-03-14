@@ -29,3 +29,4 @@
 /test-output/Default suite/Default test.html
 /test-output/Default suite/testng-failed.xml
 /test-output/testng-failed.xml
+/test-output/junitreports/TEST-searchTests.SearchTest.xml
