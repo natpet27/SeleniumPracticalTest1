@@ -27,3 +27,5 @@
 /test-output/testng-results.xml
 /test-output/testng.css
 /test-output/Default suite/Default test.html
+/test-output/Default suite/testng-failed.xml
+/test-output/testng-failed.xml
