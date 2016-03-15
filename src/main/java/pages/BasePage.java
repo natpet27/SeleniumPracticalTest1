@@ -7,19 +7,20 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
-import framework.SeleniumWebDriver;
+import framework.SeleniumDriver;
 
 public class BasePage {
+	
+	private SeleniumDriver seleniumWebDriver;
 
 	protected BasePage() {
-		PageFactory.initElements(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(), this);
+		seleniumWebDriver = SeleniumDriver.getInstance();
+		PageFactory.initElements(seleniumWebDriver.getWebDriver(), this);
 	}
 
 	public void goToPage(String url) {
-		SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().get(url);
+		SeleniumDriver.getInstance().getWebDriver().get(url);
 	}
 
 	protected void enterTextIntoTextField(WebElement textField, String text) {
@@ -33,8 +34,8 @@ public class BasePage {
 	}
 
 	public void waitUntilPageTitleStartsWithPartialText(final String partialText) {
-		(new WebDriverWait(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(),
-				SeleniumWebDriver.getSeleniumWebDriverInstance().getTimeOutTime()))
+		(new WebDriverWait(SeleniumDriver.getInstance().getWebDriver(),
+				SeleniumDriver.getInstance().getTimeOutTime()))
 						.until(new ExpectedCondition<Boolean>() {
 							public Boolean apply(WebDriver d) {
 								return d.getTitle().toLowerCase().startsWith(partialText);
@@ -43,9 +44,8 @@ public class BasePage {
 	}
 	
 	public String getPageTitle() {
-		return SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().getTitle();
-	}
-	
+		return seleniumWebDriver.getWebDriver().getTitle();
+	}	
 	public void waitForPageLoad1() {
 	
 	   WebDriverWait wait = new WebDriverWait(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(), 30);
