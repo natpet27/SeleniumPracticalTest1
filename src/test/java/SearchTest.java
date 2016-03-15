@@ -5,7 +5,7 @@ import pages.GoogleHomePage;
 
 public class SearchTest extends BaseTest {
 	
-	@Test
+	@Test(enabled = false)
 	public void searchByWordTest1() {
 		final String expectedPageTitle = "cheese!";
 		final String searchPhrase = "Cheese!";
@@ -22,5 +22,12 @@ public class SearchTest extends BaseTest {
 
         // Should see: "cheese! - Google Search"
         System.out.println("Page title is: " + googleHomePage.getPageTitle());
+	}
+	
+	@Test
+	public void testWaitForPageToLoad() {
+		GoogleHomePage googleHomePage = new GoogleHomePage();
+		googleHomePage.goToPage("http://megavinn.stage.everymatrix.com/");
+		googleHomePage.waitForPageLoad1();
 	}
 }

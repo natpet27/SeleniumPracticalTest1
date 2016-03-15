@@ -1,9 +1,11 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +18,7 @@ public class BasePage {
 		PageFactory.initElements(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(), this);
 	}
 
-	protected void goToPage(String url) {
+	public void goToPage(String url) {
 		SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().get(url);
 	}
 
@@ -42,6 +44,19 @@ public class BasePage {
 	
 	public String getPageTitle() {
 		return SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver().getTitle();
+	}
+	
+	public void waitForPageLoad1() {
+	
+	   WebDriverWait wait = new WebDriverWait(SeleniumWebDriver.getSeleniumWebDriverInstance().getWebDriver(), 30);
+
+	    wait.until(new ExpectedCondition<Boolean>() {
+	        public Boolean apply(WebDriver driver) {
+	            return ((JavascriptExecutor) driver).executeScript(
+	                "return document.readyState"
+	            ).equals("complete");
+	        }
+	    });
 	}
 	
 	@BeforeMethod() 
